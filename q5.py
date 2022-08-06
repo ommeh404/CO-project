@@ -1,3 +1,5 @@
+
+25
 #Q5(Bonus Question)
 import math
 print("-------------------------------------Type 1------------------------------------------")
@@ -14,10 +16,31 @@ print()
 print("Enter your initial input:")
 inp_mem=input("Input Memory Space: ")
 
-mem_unit = {"kB" : 2*10 , "mB" : 220 , "gB" : 2*30}
+mem_unit = {"kb" : 2**10 , "mb" : 2**20 , "gb" : 2**30 , "kB" : 2**18 , "mB" : 2**28 , "gB" : 2**38}
 inp_mem=inp_mem.split()
-bits=int(inp_mem[0])(2*10)                      #converting input memory to bits
-x = math.log(bits) / math.log(2)                  #x value is the power of input memory after converting into bits which is in the form 2**x
+if(inp_mem[1]=='kb'):
+    bits=int(inp_mem[0])*(2**10)                      #converting input memory to bits
+    x = math.log(bits) / math.log(2)                  #x value is the power of input memory after converting into bits which is in the form 2**x
+
+elif(inp_mem[1]=='mb'):
+    bits=int(inp_mem[0])*(2**10)                      #converting input memory to bits
+    x = math.log(bits) / math.log(2) 
+
+if(inp_mem[1]=='gb'):
+    bits=int(inp_mem[0])*(2**10)                      #converting input memory to bits
+    x = math.log(bits) / math.log(2) 
+
+if(inp_mem[1]=='gB'):
+    bits=int(inp_mem[0])*(2**10)                      #converting input memory to bits
+    x = math.log(bits) / math.log(2)     
+
+if(inp_mem[1]=='kB'):
+    bits=int(inp_mem[0])*(2**10)                      #converting input memory to bits
+    x = math.log(bits) / math.log(2) 
+
+if(inp_mem[1]=='mB'):
+    bits=int(inp_mem[0])*(2**10)                      #converting input memory to bits
+    x = math.log(bits) / math.log(2)     
 #print(x)
 print()
 print("1.Bit addressable memory")
@@ -35,14 +58,14 @@ elif(address_type=="3"):
     y=math.log(address_pins)/math.log(2)
 
 elif(address_type=="1"):
-    address_pins=2*x/2*1
+    address_pins=2**x/2**1
     y=math.log(address_pins)/math.log(2)
 
 elif(address_type=="4"):
-    address_pins=2*x/2*4
+    address_pins=2**x/2**4
     y=math.log(address_pins)/math.log(2)
 
-
+#print(y)
 
 
 print()
@@ -65,7 +88,7 @@ address_type2=input("Enter the enhanced address type option: ")
 if(address_type2=="4"):
     g=math.log(bitCPU)/math.log(2)
     print()
-    new_pins=2*x/2*g                  #Calculating the number of new address pins
+    new_pins=2**x/2**g                  #Calculating the number of new address pins
 
 elif(address_type2=='2'):
     print()
@@ -100,11 +123,48 @@ print("2.Byte addressable memory")
 print("3.Nibble addressable memory")
 print("4.Word addressable memory")
 print()
-address_memory = input("Enter the type of addressable memory: ") #Type of addressable memory
+address_memory = int(input("Enter the type of addressable memory: "))#Type of addressable memory
 
 number_address = 2**int(address_pins[0])  #possible number of memory address
 
-if(address_memory in Dict):
+
+
+if(address_memory == 1):
     a = number_address/8             #conversion to bytes
     b = a/1024                       #conversion to KB
-    b = b/1024                       #conversion to MB …
+    c = b/1024                       #conversion to MB  
+    d = c/1024                       #conversion to GB
+
+    print()
+    final_output = Dict["Bit addressable memory"]*d
+    print("The size of main memory is: ",int(final_output),'GB')  
+
+elif(address_memory == 2):
+    a = number_address/8             #conversion to bytes
+    b = a/1024                       #conversion to KB
+    c = b/1024                       #conversion to MB  
+    d = c/1024                       #conversion to GB
+
+    print()
+    final_output = Dict["Byte addressable memory"]*d
+    print("The size of main memory is: ",int(final_output),'GB')  
+
+elif(address_memory == 3):
+    a = number_address/8             #conversion to bytes
+    b = a/1024                       #conversion to KB
+    c = b/1024                       #conversion to MB  
+    d = c/1024                       #conversion to GB
+
+    print()
+    final_output = Dict["Nibble addressable memory"]*d
+    print("The size of main memory is: ",int(final_output),'GB')   
+
+elif(address_memory == 4):
+    a = number_address/8             #conversion to bytes
+    b = a/1024                       #conversion to KB
+    c = b/1024                       #conversion to MB  
+    d = c/1024                       #conversion to GB
+
+    print()
+    final_output = d*int(bitCPU[0])
+    print("The size of main memory is: ",int(final_output),"GB")
